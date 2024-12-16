@@ -5,7 +5,8 @@
   "scripts": {
     "clean": "rimraf dist",
     "pack-unpack": "rimraf dist && pnpm pack && mkdir dist && tar --strip-components=1 -xvzf subsub-contracts-*.tgz -C dist && rimraf subsub-contracts-*.tgz",
-    "deploy-local": "forge script script/Deploy.s.sol:DeployScript --fork-url http://localhost:8545 --broadcast"
+    "deploy-local": "forge script script/Deploy.s.sol:DeployScript --fork-url http://localhost:8545 --broadcast",
+    "solhint": "solhint src/**/*.sol"
   },
   "files": [
     "README.md",
@@ -41,6 +42,7 @@
   "homepage": "https://github.com/subsub-eth/subsub-contracts#readme",
   "devDependencies": {
     "rimraf": "^5.0.5",
+    "solhint": "^5.0.3",
     "typescript": "^5.5.4"
   }
 }

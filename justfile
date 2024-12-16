@@ -9,7 +9,7 @@ build:
   forge build --sizes
 
 # build all
-build-all: build test pnpm-pack
+build-all: build test solhint pnpm-pack
 
 # pnpm pack
 pnpm-pack:
@@ -37,6 +37,10 @@ test:
 # test contract
 test-contract CONTRACT:
   forge test -vvv --match-contract {{CONTRACT}}
+
+# run solhint
+solhint:
+  pnpm run solhint
 
 # clean all
 clean: forge-clean pnpm-clean clean-pack
