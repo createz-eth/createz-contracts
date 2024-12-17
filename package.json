@@ -6,7 +6,8 @@
     "clean": "rimraf dist",
     "pack-unpack": "rimraf dist && pnpm pack && mkdir dist && tar --strip-components=1 -xvzf subsub-contracts-*.tgz -C dist && rimraf subsub-contracts-*.tgz",
     "deploy-local": "forge script script/Deploy.s.sol:DeployScript --fork-url http://localhost:8545 --broadcast",
-    "solhint": "solhint src/**/*.sol"
+    "solhint": "solhint 'src/**/*.sol'",
+    "solhint-strict": "solhint --max-warnings 0 'src/**/*.sol'"
   },
   "files": [
     "README.md",

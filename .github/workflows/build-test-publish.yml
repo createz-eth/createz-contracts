@@ -19,9 +19,17 @@ jobs:
         with:
           version: nightly
 
-      - name: Run Forge build
+      - name: Show Forge version
         run: |
           forge --version
+
+      - name: Run Forge fmt
+        run: |
+          forge fmt --check
+        id: fmt
+
+      - name: Run Forge build
+        run: |
           forge build --sizes
         id: build
 
@@ -35,6 +43,44 @@ jobs:
           name: json-abi
           path: out/**/*.json
           retention-days: 1
+        if: startsWith(github.ref, 'refs/tags/')
+
+  lint:
+    name: Linting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-node@v4
+        name: Install Node
+        with:
+          node-version: '22.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        with:
+          version: 9
+
+      - run: pnpm install --frozen-lockfile
+        name: Install Dependencies
+
+      - run: pnpm run solhint-strict
+        name: Solhint
+
+  slither:
+    name: Slither
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Slither static analysis
+        uses: crytic/slither-action@v0.4.0
+        id: slither
 
   publish:
     name: Publish Release
