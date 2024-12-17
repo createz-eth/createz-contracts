@@ -2,6 +2,8 @@
   "extends": "solhint:recommended",
   "plugins": [],
   "rules": {
+    "one-contract-per-file": "off",
+    "func-name-mixedcase": "off",
     "func-visibility": [
       "warn",
       {

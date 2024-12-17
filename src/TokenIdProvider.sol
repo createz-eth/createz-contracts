@@ -9,13 +9,16 @@ library TokenIdProviderLib {
     }
 
     // keccak256(abi.encode(uint256(keccak256("subsub.storage.subscription.TokenIdProvider")) - 1)) & ~bytes32(uint256(0xff))
+    // solhint-disable-next-line const-name-snakecase
     bytes32 private constant TokenIdProviderStorageLocation =
         0x40c8f2ce84303d686a9ccadcec2b4734ae4bd9191beee7cbddf307002bcc2700;
 
     function _getTokenIdProviderStorage() private pure returns (TokenIdProviderStorage storage $) {
+        // solhint-disable no-inline-assembly
         assembly {
             $.slot := TokenIdProviderStorageLocation
         }
+        // solhint-enable no-inline-assembly
     }
 
     function init(uint256 tokenId) internal {

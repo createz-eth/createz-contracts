@@ -9,6 +9,8 @@ import {Strings} from "openzeppelin-contracts/utils/Strings.sol";
 library ViewLib {
     // TODO add symbol to contractURI
 
+    // solhint-disable quotes
+
     using Strings for uint256;
     using Strings for address;
 

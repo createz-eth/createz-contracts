@@ -1,19 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "openzeppelin-contracts-upgradeable/proxy/utils/Initializable.sol";
-
-import {ERC721EnumerableUpgradeable} from
-    "openzeppelin-contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
-
 import {SubLib} from "./SubLib.sol";
 
 import {OzContext} from "../dependency/OzContext.sol";
 import {OzERC721Enumerable} from "../dependency/OzERC721Enumerable.sol";
 
 import {SubscriptionFlags} from "./ISubscription.sol";
-
-library BaseSubscriptionLib {}
 
 /**
  * @notice Provides validation functions needed throughout other subscription modules
