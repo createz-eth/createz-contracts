@@ -104,7 +104,9 @@ contract DeployScript is Script {
             console.log("ERC6551 Account Implementation", erc6551AccountImplementation);
 
             erc6551AccountBeacon = c3.deploy(
-                abi.encodePacked(type(UpgradeableBeacon).creationCode, abi.encode(erc6551AccountImplementation, deployer)),
+                abi.encodePacked(
+                    type(UpgradeableBeacon).creationCode, abi.encode(erc6551AccountImplementation, deployer)
+                ),
                 "ERC6551AccountBeacon"
             );
             console.log("ERC6551 Account Beacon", erc6551AccountBeacon);
@@ -116,8 +118,7 @@ contract DeployScript is Script {
             console.log("ERC6551 Account BeaconProxy", erc6551AccountBeacon);
 
             erc6551AccountProxy = c3.deploy(
-                abi.encodePacked(type(ERC6551Proxy).creationCode, abi.encode(erc6551AccountBeaconProxy)),
-                "ERC6551Proxy"
+                abi.encodePacked(type(ERC6551Proxy).creationCode, abi.encode(erc6551AccountBeaconProxy)), "ERC6551Proxy"
             );
             console.log("ERC6551 Account Proxy", erc6551AccountProxy);
 

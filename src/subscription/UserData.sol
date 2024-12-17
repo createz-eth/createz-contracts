@@ -527,7 +527,13 @@ abstract contract UserData is OzInitializable, TimeAware, HasRate, HasUserData {
         (isActive, change) = UserDataLib.changeMultiplier(tokenId, newMultiplier, _now(), _rate());
     }
 
-    function _spent(uint256 tokenId) internal view virtual override returns (uint256 spentAmount, uint256 unspentAmount) {
+    function _spent(uint256 tokenId)
+        internal
+        view
+        virtual
+        override
+        returns (uint256 spentAmount, uint256 unspentAmount)
+    {
         (spentAmount, unspentAmount) = UserDataLib.spent(tokenId, _now(), _rate());
     }
 

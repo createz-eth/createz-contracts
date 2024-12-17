@@ -15,13 +15,7 @@ import {TimeAware, TimestampTimeAware} from "../TimeAware.sol";
 import {ERC721EnumerableUpgradeable} from
     "openzeppelin-contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
 
-abstract contract AbstractBurnableFacet is
-    OzContext,
-    OzERC721Enumerable,
-    HasUserData,
-    Burnable
-{
-
+abstract contract AbstractBurnableFacet is OzContext, OzERC721Enumerable, HasUserData, Burnable {
     function burn(uint256 tokenId) external {
         // only owner of tokenId can burn
         require(__msgSender() == __ownerOf(tokenId), "SUB: not the owner");
